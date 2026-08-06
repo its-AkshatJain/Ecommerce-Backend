@@ -28,6 +28,9 @@ const db = admin.firestore();
 const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || 'your_webhook_secret_here';
 
 export default async function handler(req, res) {
+  console.log("🔔 WEBHOOK HIT! Event received!");
+  console.log(req.body);
+
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
