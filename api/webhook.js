@@ -59,8 +59,9 @@ export default async function handler(req, res) {
     // Signature verified! Parse payload if it was stringified
     const payload = typeof req.body === 'object' ? req.body : JSON.parse(req.body);
 
-    // We are looking for the 'payment.captured' event
-    if (payload.event === WEBHOOK_EVENTS.PAYMENT_CAPTURED) {
+    // Because we are not using the Razorpay Orders API, payments will default to 'Authorized' instead of 'Captured'.
+    // We should treat 'payment.authorized' as a successful transaction for the user, and manually capture it later in the dashboard.
+    if (payload.event === WEBHOOK_EVENTS.PAYMENT_CAPTURED || payload.event === WEBHOOK_EVENTS.PAYMENT_AUTHORIZED) {
       const paymentEntity = payload.payload.payment.entity;
       
       // Get the orderId we passed from Flutter in the 'notes' field

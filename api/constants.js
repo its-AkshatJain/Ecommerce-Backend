@@ -1,5 +1,6 @@
 export const WEBHOOK_EVENTS = {
   PAYMENT_CAPTURED: 'payment.captured',
+  PAYMENT_AUTHORIZED: 'payment.authorized',
 };
 
 export const ORDER_STATUS = {
