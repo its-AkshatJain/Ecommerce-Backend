@@ -88,7 +88,7 @@ export default async function handler(req, res) {
       const orderData = orderDoc.data();
       // Razorpay sends amount in paise (e.g. 50000 for ₹500).
       // If your Flutter app saves totalAmount as 500, compare carefully.
-      const expectedAmountInPaise = Math.round(orderData.totalAmount * 100);
+      const expectedAmountInPaise = Math.round(orderData.total_amount * 100);
 
       if (amountPaid !== expectedAmountInPaise) {
         console.error(`Amount mismatch! Paid: ${amountPaid}, Expected: ${expectedAmountInPaise}`);
